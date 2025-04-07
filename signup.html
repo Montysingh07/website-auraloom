@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .main{
+            display: flex;
+            margin-left: 300px;
+            margin-top: 50px;
+            margin-right: 300px;
+            box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+
+        .first{
+            background: linear-gradient(45deg, #ff8c94, #ffd3a0);
+            height: 700px;
+            width: 500px;
+            border-radius: 10px;
+            
+        }
+
+        .pf{
+            text-align: center;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+        .second{
+            height: 700px;
+            width: 500px;
+        }
+
+        .he{
+            padding-top: 250px;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 50px;
+            text-align: center;
+        }
+
+        .me{
+            padding-top: 50px;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+
+        .ps{
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+
+        form{
+            text-align: center;
+            padding-left: 50px;
+        }
+        input{
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px;
+            width: 280px;
+            font-size: 15px;
+        }
+
+        button{
+            border-radius: 5px;
+            background-color: #ff8c94;
+            color: #fff;
+            padding: 10px;
+            width: 200px;
+            margin-top: 20px;
+        }
+        .pl{
+            text-align: center;
+            position: relative;
+            top: 400px;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="first">
+            <h1 class="he">Register & Be A Part Of The AuraLooms Circle!</h1>
+            <p class="pf">Enjoy exclusive benefits like:
+
+                - Flat 15% Off on your first order* | Use code: GLAM15
+                
+                - Exclusive early collection showcase
+                
+                - Access amazing offers, discounts and more
+                
+                Join Now!</p>
+        </div>
+        <div class="second">
+            <h2 class="me">Sign Up</h2>
+            <p class="ps">Sign Up
+                Welcome to AuraLooms It's quick and easy to set up an account
+            </p>
+            <form id="userForm" onsubmit="submitForm(event)">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" oninput="validateName()" required>
+                <div id="nameError" class="error"></div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" oninput="validateEmail()" required>
+                <div id="emailError" class="error"></div>
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+                <label for="gender">Gender:</label>
+                <input type="text" id="gender" name="gender" required>
+                <label for="phone">Phone:</label>
+                <input type="number" id="phone" name="phone" required>
+                <button type="submit">Submit:</button>
+                </form>
+                <script>
+                function submitForm(event) {
+                event.preventDefault();
+                // Get form values
+                var name = document.getElementById("name").value;
+                var email = document.getElementById("email").value;
+                var age = document.getElementById("age").value;
+                // Validate data
+                if (!validateName() || !validateEmail() || age === "") {
+                alert("Please fix the errors before submitting.");
+                return;
+                }
+                // Display submitted data
+                alert("Submitted Data:\nName: " + name + "\nEmail: " + email + "\nAge: " + age);
+                window.location.href = "index.html";
+                // You can send the data to the server or perform additional actions here
+                }
+                function validateName() {
+                var nameInput = document.getElementById("name");
+                var nameError = document.getElementById("nameError");
+                var isValid = /^[a-zA-Z]+$/.test(nameInput.value);
+                if (isValid) {
+                nameError.innerHTML = "";
+                } else {
+                nameError.innerHTML = "Name should contain only alphabets";
+                }
+                return isValid;
+                }
+                function validateEmail() {
+                var emailInput = document.getElementById("email");
+                var emailError = document.getElementById("emailError");
+                var isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value);
+                if (isValid) {
+                emailError.innerHTML = "";
+                } else {
+                // emailError.innerHTML = "Invalid email address";
+                }
+                return isValid;
+                }
+                </script>
+            <p class="pl">
+                By continuing, I agree to the Terms of Use and Privacy Policy</p>
+        </div>
+    </div>
+</body>
+</html>
+
+<form action="/search" method="get" style="display: inline-block; position: absolute;">
+    <input type="text" placeholder="First Name" name="search"><br>
+    <input type="text" placeholder="Last Name" name="search"><br>
+    <input type="text" placeholder="Email" name="search"><br>
+    <input type="text" placeholder="Password" name="search"><br>
+    <a href="index.html"></a><button>Sign Up</button>
+</form>

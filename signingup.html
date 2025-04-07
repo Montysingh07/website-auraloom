@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>User Records Form</title>
+ <style>
+ body {
+ font-family: Arial, sans-serif;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ height: 100vh;
+ background: linear-gradient(to right, #36D1DC, #5B86E5);
+ margin: 0;
+ }
+ form {
+ height: 379px;
+ width: 362px;
+ max-width: 384px;
+ padding: 20px;
+ background: rgba(255, 255, 255, 0.8);
+ border-radius: 10px;
+ box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+ }
+ label {
+ display: block;
+ margin-bottom: 8px;
+ }
+ input {
+ width: 100%;
+ padding: 10px;
+ margin-bottom: 16px;
+ box-sizing: border-box;
+ border: 1px solid #ccc;
+ border-radius: 4px;
+ }
+ button {
+ background-color: #fff; /* Match the background color */
+ color: #4CAF50; /* Text color */
+ border: 1px solid #4CAF50; /* Border color */
+ padding: 10px 15px;
+ border-radius: 4px;
+ cursor: pointer;
+ display: block;
+ margin: 0 auto;
+ transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+ }
+ button:hover {
+ background-color: #4CAF50;
+ color: #fff;
+ border: 1px solid #45a049;
+ }
+ .error {
+ color: red;
+ margin-top: -10px;
+ margin-bottom: 10px;
+ }
+ </style>
+</head>
+<body>
+ <form id="userForm" onsubmit="submitForm(event)">
+ <label for="name">Name:</label>
+ <input type="text" id="name" name="name" oninput="validateName()" required>
+ <div id="nameError" class="error"></div>
+ <label for="email">Email:</label>
+ <input type="email" id="email" name="email" oninput="validateEmail()" required>
+ <div id="emailError" class="error"></div>
+ <label for="age">Age:</label>
+ <input type="number" id="age" name="age" required>
+ <label for="gender">Gender:</label>
+ <input type="text" id="gender" name="gender" required>
+ <label for="phone">Phone:</label>
+ <input type="number" id="phone" name="phone" required>
+ <button type="submit">Submit:</button>
+ </form>
+ <script>
+ function submitForm(event) {
+ event.preventDefault();
+ // Get form values
+ var name = document.getElementById("name").value;
+ var email = document.getElementById("email").value;
+ var age = document.getElementById("age").value;
+ // Validate data
+ if (!validateName() || !validateEmail() || age === "") {
+ alert("Please fix the errors before submitting.");
+ return;
+ }
+ // Display submitted data
+ alert("Submitted Data:\nName: " + name + "\nEmail: " + email + "\nAge: " + age);
+ window.location.href = "index.html";
+ // You can send the data to the server or perform additional actions here
+ }
+ function validateName() {
+ var nameInput = document.getElementById("name");
+ var nameError = document.getElementById("nameError");
+ var isValid = /^[a-zA-Z]+$/.test(nameInput.value);
+ if (isValid) {
+ nameError.innerHTML = "";
+ } else {
+ nameError.innerHTML = "Name should contain only alphabets";
+ }
+ return isValid;
+ }
+ function validateEmail() {
+ var emailInput = document.getElementById("email");
+ var emailError = document.getElementById("emailError");
+ var isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value);
+ if (isValid) {
+ emailError.innerHTML = "";
+ } else {
+ // emailError.innerHTML = "Invalid email address";
+ }
+ return isValid;
+ }
+ </script>
+</body>
+</html>
